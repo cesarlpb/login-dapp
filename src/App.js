@@ -5,60 +5,159 @@ import { useState } from "react";
 import { useMoralis } from 'react-moralis';
 
 const SignUp = () => {
-  const {signup} = useMoralis();
-  // const [email = '', setEmail] = useState();
-  const [username = '', setUsername] = useState();
-  const [password = '', setPassword] = useState();
+  // const {signup} = useMoralis();
+  const {Moralis} = useMoralis();
+
+  const signupFunc = async () => {
+    console.log(username, password, email);
+
+    const user = new Moralis.User();
+    user.set("username", username);
+    user.set("password", password);
+    user.set("email", email);
+
+    try {
+      await user.signUp();
+      alert("Succesfully Signed up!");
+      // Hooray! Let them use the app now.
+    } catch (error) {
+      // Show the error message somewhere and let the user try again.
+      alert("Error: " + error.code + " " + error.message);
+    }
+
+    // login(username, password, email);
+  };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handleUsernameChange = (event) => setUsername(event.target.value);
   
   return(
-    <form>
+    <div>
       <h2>Sign Up</h2>
-      <div className="form-group">
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input value={username} onChange={(event) => setUsername(event.currentTarget.value)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
-        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">Password</label>
-        <input value={password} onChange={(event) => setPassword(event.currentTarget.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
-      </div>
-      <button type="submit" className="btn btn-primary" onClick={() => signup()}>Sign Up</button>
-    </form>
+
+      <form>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input 
+            value={username} 
+            onChange={handleUsernameChange} 
+            type="text" 
+            className="form-control" 
+            // id="exampleInputEmail1" 
+            // aria-describedby="emailHelp" 
+            placeholder="Enter username">
+          </input>
+          <small id="usernameHelp" className="form-text text-muted">
+            Username field
+          </small>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="email">Email address:</label>
+          <input 
+            value={email} 
+            onChange={handleEmailChange} 
+            type="email" 
+            className="form-control" 
+            // id="exampleInputEmail1" 
+            // aria-describedby="emailHelp" 
+            placeholder="Enter email">
+          </input>
+          <small id="emailHelp" className="form-text text-muted">
+            Email field
+          </small>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword1">Password:</label>
+          <input 
+            value={password} 
+            onChange={handlePasswordChange} 
+            type="password" 
+            className="form-control" 
+            // id="exampleInputPassword1" 
+            placeholder="Password">
+          </input>
+          <small id="emailHelp" className="form-text text-muted">
+            Password field
+          </small>
+        </div>
+        <button type="submit" className="btn btn-primary" onClick={() => signupFunc()}>Sign Up</button>
+      </form>
+    </div>
   ) 
 }
 
 const Login = () => {
-  const {login} = useMoralis();
-  // const [email = '', setEmail] = useState();
-  const [username = '', setUsername] = useState();
-  const [password = '', setPassword] = useState();
+  // const {login} = useMoralis();
+  // const {Moralis} = useMoralis();
+  const { login, isAuthenticated } = useMoralis();
+
+  const loginUser = async () => {
+    console.log(username, password);
+    // console.log(isAuthenticated);
+    login(username, password);
+    isAuthenticated = true;
+    // console.log(isAuthenticated);
+  };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+
+  // const handleEmailChange = (event) => setEmail(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handleUsernameChange = (event) => setUsername(event.target.value);
   
   return(
     <form>
       <h2>Login</h2>
       <div className="form-group">
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input value={username} onChange={(event) => setUsername(event.currentTarget.value)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></input>
+        <label htmlFor="username">Username:</label>
+        <input 
+          value={username} 
+          onChange={handleUsernameChange} 
+          type="text" 
+          className="form-control" 
+          // id="exampleInputEmail1" 
+          // aria-describedby="emailHelp" 
+          placeholder="Enter Username">
+        </input>
       </div>
+
       <div className="form-group">
-        <label htmlFor="exampleInputPassword1">Password</label>
-        <input value={password} onChange={(event) => setPassword(event.currentTarget.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+        <label htmlFor="password">Password:</label>
+        <input 
+          value={password} 
+          onChange={handlePasswordChange} 
+          type="password" 
+          className="form-control" 
+          // id="exampleInputPassword1" 
+          placeholder="Password">
+        </input>
       </div>
-      <button type="submit" className="btn btn-primary" onClick={() => login()}>Login</button>
+
+      <button type="submit" className="btn btn-primary" onClick={() => loginUser()}>Login</button>
+
     </form>
   ) 
 }
 
 function App() {
-  const { authenticate, authError, isAuthenticated, isAuthenticating, logout } = useMoralis();
+  const { authenticate, authError, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
 
   if(isAuthenticated){
     return(
     <div>
-      <h1>Welcome to Entrupy!</h1>
+      <h1>Welcome to Entrupy, {user.attributes.username}!</h1>
       <img src={logo}></img>
       <div>
-        <button onClick={() => logout()}>Log out</button>
+        <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
       </div>
     </div>
     )
@@ -76,7 +175,8 @@ function App() {
       <div className='mx-auto col-6'>
       <h1 className="h1 text-center py-2">Welcome</h1>
       <div className='mx-auto text-center py-2'>
-        <button className="btn btn-primary" isLoading={isAuthenticating} onClick={() => authenticate()}>Authenticate with Metamask</button>
+      {/* isLoading={isAuthenticating} */}
+        <button className="btn btn-primary" onClick={() => authenticate()}>Authenticate with Metamask</button>
       </div>
         <hr></hr>
         <SignUp />
