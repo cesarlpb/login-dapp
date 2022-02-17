@@ -15,6 +15,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import LoginWeb3 from './components/LoginWeb3';
 // </Components>
 
 const appId = env.APP_ID;
@@ -29,8 +30,9 @@ ReactDOM.render(
           <Route exact path='/' element={<App/>}>
             {/* <Route exact path='/' element={<App/>}/> */}
           </Route>
-          <Route exact path='/signup' element={<SignUp/>}/>
-          <Route exact path='/login' element={<Login/>}/>
+          <Route exact path='/signup' element={ <SignUp /> }/>
+          <Route exact path='/login' element={ <Login /> }/>
+          <Route exact path='/loginweb3' element={ <LoginWeb3 /> }/>
         </Routes>
         <Footer/>
       </Fragment>
