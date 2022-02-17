@@ -27,7 +27,7 @@ function Login(){
         return(
         <div className="col-6 mx-auto my-20">
           <h1>Welcome to Entrupy, {user.attributes.username}!</h1>
-          <img src={logo}></img>
+          <img src={logo} alt=""></img>
           <div>
             <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
           </div>

@@ -10,7 +10,7 @@ import './SignUp.css';
 //   }
 
 function SignUp(){
-    const { authenticate, authError, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
+    const { isAuthenticated, user, logout } = useMoralis();
 
     // const {signup} = useMoralis();
     const {Moralis} = useMoralis();
@@ -47,7 +47,7 @@ function SignUp(){
       return(
       <div>
         <h1>Welcome to Entrupy, {user.attributes.username}!</h1>
-        <img src={logo}></img>
+        <img src={logo} alt=""></img>
         <div>
           <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
         </div>
