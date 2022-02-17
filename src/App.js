@@ -4,6 +4,16 @@ import './App.css';
 import { useState } from "react";
 import { useMoralis } from 'react-moralis';
 
+import { Link } from 'react-router-dom';
+
+// ToDo: set links styles
+const linkStyle = {
+  margin: "1rem",
+  textDecoration: "none",
+  color: 'white',
+  border: '0px solid black'
+};
+
 const SignUp = () => {
   // const {signup} = useMoralis();
   const {Moralis} = useMoralis();
@@ -179,11 +189,15 @@ function App() {
         <button className="btn btn-primary" onClick={() => authenticate()}>Authenticate with Metamask</button>
       </div>
         <hr></hr>
-        <SignUp />
-        <br></br>
-        <hr></hr>
-        <br></br>
-        <Login />
+        <div className='mx-auto col-6 text-center pb-5'>
+        <Link to="/login" style={linkStyle} className="btn btn-primary">Login</Link>
+        {/* <Login /> */}
+        
+        <p>or</p>
+        
+        <Link to="/signup" style={linkStyle} className="btn btn-primary">Sign Up</Link>
+        {/* <Login /> */}
+        </div>
       </div>
     </div>
   );
