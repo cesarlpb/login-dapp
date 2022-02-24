@@ -1,16 +1,18 @@
-// import { useState } from "react";
 import { useMoralis } from 'react-moralis';
-
-import env from "react-dotenv";
-
 import styles from './LoginWeb3.css';
 import logo from '../assets/img/favicon-180x180.png';
+import { Link } from 'react-router-dom';
 
-// const clientID = env.CLIENT_ID;
+const linkStyle = {
+  margin: "1rem",
+  textDecoration: "none",
+  color: 'white',
+  border: '0px solid black'
+};
 
 function LoginWeb3(){
-    const { authenticate, authError, isAuthenticating, Moralis } = useMoralis();
-
+    const { authenticate, authError, isAuthenticating, isAuthenticated, Moralis, user, logout } = useMoralis();
+    
     const handleCustomLogin = async () => {
       await authenticate({
         provider: "web3Auth",
@@ -38,8 +40,22 @@ function LoginWeb3(){
       });
     };
   
+    if(isAuthenticated){
+      return(
+      <div id="container" className='justify-content-center mx-auto text-center'>
+        <h1>Welcome to Entrupy, {user.attributes.username}!</h1>
+        <img src={logo} width={50} alt="" className='mx-auto py-5'></img>
+        <div>
+          <Link to="/edit" style={linkStyle} className="btn btn-primary">Edit Profile</Link>
+          <Link to="/mint" style={linkStyle} className="btn btn-primary">Mint NFT (WIP)</Link>
+          <Link to="/dashboard" style={linkStyle} className="btn btn-primary">Dashboard</Link>
+          <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
+        </div>
+      </div>
+      )
+    }
     return (
-      <div id="container">
+      <div id="container" style={styles.div}>
         <div id="card" className="card mx-auto justify-content-center">
             <img className='img mx-auto' alt="" src={logo} width={80} height={80}></img>
             <p className='my-3'>Log in to Entrupy</p>

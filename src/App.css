@@ -5,3 +5,9 @@ body, html{
 .App{
     height: 80vh; /* check */
 }
+
+#container{
+    height: 100vh;
+    display: grid;
+    align-content: center;
+}

@@ -1,6 +1,6 @@
 import logo from './assets/img/logo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import styles from './App.css';
 // import { useState } from "react";
 import { useMoralis } from 'react-moralis';
 
@@ -159,7 +159,7 @@ const linkStyle = {
 // }
 
 function App() {
-  const { authenticate, authError, isAuthenticated, user, logout } = useMoralis();
+  const { authError, isAuthenticated, user, logout } = useMoralis();
 
   if(isAuthenticated){
     return(
@@ -182,28 +182,37 @@ function App() {
         </div>
       )}
       
-      <div className='mx-auto col-6'>
-      <h1 className="h1 text-center py-2">Welcome</h1>
-      <div className='mx-auto text-center py-2'>
-      {/* isLoading={isAuthenticating} */}
+      <div id="container" className='mx-auto col-6 text-center align-middle'>
+
+        <div id="container" className='' style={styles.div}>
+          <img className='text-center mx-auto' src={logo} alt=""></img>
+          <h1 className="mx-auto text-center py-2">Welcome to Entrupy</h1>
+          <Link to="/loginweb3" style={linkStyle} className="col-3 col-sm-6 mx-auto btn btn-primary">Login with Web3 Auth</Link>
+        </div>
+
+      </div> 
+
+      {/* <div className='mx-auto text-center py-2'>
+      isLoading={isAuthenticating}
         <button className="btn btn-primary" onClick={() => authenticate()}>Authenticate with Metamask</button>
       </div>
+
         <hr></hr>
         <div className='mx-auto col-6 text-center pb-5'>
         
         <Link to="/login" style={linkStyle} className="btn btn-primary">Login</Link>
-        {/* <Login /> */}
+        <Login />
         
         <p>or</p>
         
         <Link to="/signup" style={linkStyle} className="btn btn-primary">Sign Up</Link>
-        {/* <Login /> */}
+        <Login />
 
         <p>or</p>
-        <Link to="/loginweb3" style={linkStyle} className="btn btn-primary">Login with Web3 Auth</Link>
 
-        </div>
-      </div>
+        </div> */}
+
+    {/* / App */}
     </div>
   );
 }
