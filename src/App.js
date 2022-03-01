@@ -1,9 +1,9 @@
 import logo from './assets/img/logo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './App.css';
-// import { useState } from "react";
-import { useMoralis } from 'react-moralis';
 
+import { useMoralis } from 'react-moralis';
+import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 // ToDo: set links styles
@@ -163,13 +163,14 @@ function App() {
 
   if(isAuthenticated){
     return(
-    <div>
-      <h1>Welcome to Entrupy, {user.attributes.username}!</h1>
-      <img src={logo} alt=""></img>
-      <div>
-        <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
-      </div>
-    </div>
+      <Navigate to="/loginweb3" replace={true} />
+    // <div>
+    //   <h1>Welcome to Entrupy, {user.attributes.username}!</h1>
+    //   <img src={logo} alt=""></img>
+    //   <div>
+    //     <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
+    //   </div>
+    // </div>
     )
   }
 
@@ -186,33 +187,16 @@ function App() {
 
         <div id="container" className='' style={styles.div}>
           <img className='text-center mx-auto' src={logo} alt=""></img>
+          
           <h1 className="mx-auto text-center py-2">Welcome to Entrupy</h1>
+          <Link to="/mint" style={linkStyle} className="col-3 col-sm-6 mx-auto btn btn-primary">Mint (Rinkeby)</Link>
           <Link to="/loginweb3" style={linkStyle} className="col-3 col-sm-6 mx-auto btn btn-primary">Login with Web3 Auth</Link>
         </div>
 
       </div> 
 
-      {/* <div className='mx-auto text-center py-2'>
-      isLoading={isAuthenticating}
-        <button className="btn btn-primary" onClick={() => authenticate()}>Authenticate with Metamask</button>
-      </div>
-
-        <hr></hr>
-        <div className='mx-auto col-6 text-center pb-5'>
-        
-        <Link to="/login" style={linkStyle} className="btn btn-primary">Login</Link>
-        <Login />
-        
-        <p>or</p>
-        
-        <Link to="/signup" style={linkStyle} className="btn btn-primary">Sign Up</Link>
-        <Login />
-
-        <p>or</p>
-
-        </div> */}
-
     {/* / App */}
+
     </div>
   );
 }

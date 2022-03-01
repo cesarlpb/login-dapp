@@ -32,7 +32,9 @@ ReactDOM.render(
         <Routes>
           <Route exact path='/' element={ <App/> }>
             {/* <Route exact path='/' element={<App/>}/> */}
+          
           </Route>
+          <Route exact path='/mint' element={ <MintNft /> }/>
           <Route exact path='/signup' element={ <SignUp /> }/>
           <Route exact path='/login' element={ <Login /> }/>
           <Route exact path='/loginweb3' element={ <LoginWeb3 /> }/>

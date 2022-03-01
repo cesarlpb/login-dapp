@@ -2,6 +2,7 @@ import { useMoralis } from 'react-moralis';
 import styles from './LoginWeb3.css';
 import logo from '../assets/img/favicon-180x180.png';
 import { Link } from 'react-router-dom';
+import { ErrorBox } from './Errors';
 
 const linkStyle = {
   margin: "1rem",
@@ -56,6 +57,7 @@ function LoginWeb3(){
     }
     return (
       <div id="container" style={styles.div}>
+        {authError && <ErrorBox title="Auth Error" message={authError.message}/>}
         <div id="card" className="card mx-auto justify-content-center">
             <img className='img mx-auto' alt="" src={logo} width={80} height={80}></img>
             <p className='my-3'>Log in to Entrupy</p>

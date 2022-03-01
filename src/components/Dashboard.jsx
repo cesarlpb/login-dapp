@@ -2,7 +2,7 @@ import { useMoralis } from 'react-moralis';
 import { Navigate } from "react-router-dom";
 import web3 from 'web3'; 
 import './Dashboard.css';
-import { FaEdit } from 'react-icons/fa';
+// import { FaEdit } from 'react-icons/fa';
 import defaultPic from '../assets/img/profile-pic.png'
 
 function Dashboard(){

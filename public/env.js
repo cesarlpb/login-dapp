@@ -1,4 +1,4 @@
 window.env = {
-  "APP_ID": "XaBgcP4utOoFANAY6XXyFUqcT4NrO6h87cN9M7ab",
-  "SERVER_URL": "https://qbw6ohrjmalb.usemoralis.com:2053/server"
+  "APP_ID": "OXm65X8aBkFrwdvRs2DeGvpguwmmN4F2OBPAfYQD",
+  "SERVER_URL": "https://9wtqs4wca3qb.usemoralis.com:2053/server"
 };
