@@ -1,0 +1,20 @@
+#app{
+    height: 50vh;
+}
+#swapbox{
+    margin: 9vh 0;
+}
+.token_list_img{
+    width: 20px;
+}
+.modal-body{
+    height: 600px;
+    overflow: scroll;
+}
+.token_row{
+    padding: 5px 10px;
+}
+.token_row:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}

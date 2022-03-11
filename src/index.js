@@ -19,6 +19,7 @@ import LoginWeb3 from './components/LoginWeb3';
 import EditProfile from './components/EditProfile';
 import MintNft from './components/MintNft';
 import Dashboard from './components/Dashboard';
+import DEX from './components/DEX/DEX';
 // </Components>
 
 const appId = env.APP_ID;
@@ -41,6 +42,7 @@ ReactDOM.render(
           <Route exact path='/edit' element={ <EditProfile /> } />
           <Route exact path='/mint' element={ <MintNft /> } />
           <Route exact path='/dashboard' element={ <Dashboard /> } />
+          <Route exact path='/dex' element={ <DEX chain="eth" /> } />
         </Routes>
         <Footer/>
       </Fragment>

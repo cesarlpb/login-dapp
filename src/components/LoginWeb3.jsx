@@ -48,7 +48,7 @@ function LoginWeb3(){
         <img src={logo} width={50} alt="" className='mx-auto py-5'></img>
         <div>
           <Link to="/edit" style={linkStyle} className="btn btn-primary">Edit Profile</Link>
-          <Link to="/mint" style={linkStyle} className="btn btn-primary">Mint NFT (WIP)</Link>
+          <Link to="/mint" style={linkStyle} className="btn btn-primary">Mint NFT</Link>
           <Link to="/dashboard" style={linkStyle} className="btn btn-primary">Dashboard</Link>
           <button className="btn btn-primary" onClick={() => logout()}>Log out</button>
         </div>

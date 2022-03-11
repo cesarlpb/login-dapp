@@ -11,7 +11,7 @@ function Dashboard(){
 
     async function getBalances(){
         const Moralis = require('moralis');
-        const options = { chain: 'ropsten' }
+        const options = { chain: 'ropsten' }  /* TODO: make function(s) to read all balances */
         const balance = await Moralis.Web3API.account.getNativeBalance(options);
         
         return web3.utils.fromWei(balance.balance, "ether")

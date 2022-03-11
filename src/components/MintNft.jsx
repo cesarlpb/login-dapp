@@ -1,4 +1,6 @@
 import { Moralis } from 'moralis';
+import { useMoralis } from 'react-moralis';
+import { Navigate } from "react-router-dom";
 import env from "react-dotenv";
 import styles from './MintNft.css';
 
@@ -8,31 +10,36 @@ function MintNft(){
 const appId = env.APP_ID;
 const serverUrl = env.SERVER_URL;
 
+const { user, setUserData, userError, isAuthenticated, isAuthUndefined, isUserUpdating, logout } = useMoralis();
+
 Moralis.start({ serverUrl, appId });
-let user = Moralis.User.current();
+// let user = Moralis.User.current();
 
 /** Add from here down */
 async function login() {
   if (!user) {
    try {
-      user = await Moralis.authenticate({ signingMessage: "Hello World!" })
+    //   user = await Moralis.authenticate({ signingMessage: "Login to Entrupy" })
       initApp();
    } catch(error) {
      console.log(error)
    }
   }
   else{
-    Moralis.enableWeb3();
+    // Moralis.enableWeb3();
     initApp();
   }
 }
 
 function initApp(){
-    document.querySelector("#app").style.display = "block";
-    document.querySelector("#submit_button").onclick = submit;
+    // document.querySelector("#app").style.display = "block";
+    // document.querySelector("#submit_button").onclick = submit;
  }
 
 async function submit(){
+    
+    Moralis.enableWeb3();
+
     const input = document.querySelector('#input_image');
     let data = input.files[0]
     const imageFile = new Moralis.File(data.name, data)
@@ -67,12 +74,12 @@ async function submit(){
 }
 
 login();
-
+    if(isAuthenticated){
     return(
         <div id="container" className="mx-auto text-center">
             <div className="row">
                 <div className="title text-black">NFT Minter</div>
-                    <div id="app" className="col-md-6 offset-md-3">
+                    <div id="app" className="col-md-6 offset-md-3 d-block">
                         <div id="success_message">
                         </div>
                         <div className="form_element">
@@ -91,6 +98,11 @@ login();
             </div>
         </div>
     )
+    } else {
+        return (
+        <Navigate to="/loginweb3" replace={true} />
+        )
+    }
 }
 
 export default MintNft;
