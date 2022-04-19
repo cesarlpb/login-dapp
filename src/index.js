@@ -18,6 +18,8 @@ import SignUp from './components/SignUp';
 import LoginWeb3 from './components/LoginWeb3';
 import EditProfile from './components/EditProfile';
 import MintNft from './components/MintNft';
+import NFT from './components/NFT';
+import NftDashboard from './components/NFT/Dashboard';
 import Dashboard from './components/Dashboard';
 import DEX from './components/DEX/DEX';
 // </Components>
@@ -35,14 +37,17 @@ ReactDOM.render(
             {/* <Route exact path='/' element={<App/>}/> */}
           
           </Route>
-          <Route exact path='/mint' element={ <MintNft /> }/>
+          {/* <Route exact path='/mint' element={ <MintNft /> }/> */}
           <Route exact path='/signup' element={ <SignUp /> }/>
           <Route exact path='/login' element={ <Login /> }/>
           <Route exact path='/loginweb3' element={ <LoginWeb3 /> }/>
           <Route exact path='/edit' element={ <EditProfile /> } />
-          <Route exact path='/mint' element={ <MintNft /> } />
+          <Route exact path='/nft/mint' element={ <MintNft /> } />
+          <Route exact path='/nft/dashboard' element={ <NftDashboard /> } />
+          <Route exact path='/nft' element={ <NFT /> } />
           <Route exact path='/dashboard' element={ <Dashboard /> } />
-          <Route exact path='/dex' element={ <DEX chain="eth" /> } />
+          <Route exact path='/dex' element={ <DEX /> } />
+          {/* Todo: receive chain as a parameter after login and pass it to components */}
         </Routes>
         <Footer/>
       </Fragment>

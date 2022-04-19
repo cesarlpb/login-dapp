@@ -190,9 +190,7 @@ function App() {
           
           <h1 className="mx-auto text-center py-2">Welcome to Entrupy</h1>
           {/* Todo: leave only login */}
-          <Link to="/mint" style={linkStyle} className="col-3 col-sm-6 mx-auto btn btn-primary">Mint (Rinkeby)</Link> 
           <Link to="/loginweb3" style={linkStyle} className="col-3 col-sm-6 mx-auto btn btn-primary">Login with Web3 Auth</Link>
-          <Link to="/dex" style={linkStyle} className="col-3 col-sm-6 mx-auto btn btn-primary">DEX (Swap)</Link>
         </div>
 
       </div> 
